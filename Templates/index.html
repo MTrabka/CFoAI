@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Czat z Gemini</title>
+    <style>
+        #chat-container {
+            width: 80%;
+            margin: auto;
+            padding-top: 20px;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .message b {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <h1>Rozmowa z modelem Gemini</h1>
+        <div id="conversation"></div>
+        <button onclick="startChat()">Zacznij rozmowę</button>
+    </div>
+
+    <script>
+        function startChat() {
+            const conversationContainer = document.getElementById('conversation');
+            conversationContainer.innerHTML = "";  // Clear previous conversation
+
+            // Wysyłanie zapytania do backendu, aby rozpocząć czat
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({mode: 'Gemini-gemini'})
+            })
+            .then(response => response.json())
+            .then(data => {
+                const conversation = data.conversation;
+                conversation.split('<br>').forEach(line => {
+                    const messageElement = document.createElement('div');
+                    messageElement.className = 'message';
+                    messageElement.innerHTML = line;
+                    conversationContainer.appendChild(messageElement);
+                });
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+    </script>
+</body>
+</html>
