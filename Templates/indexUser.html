@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participate in Turing Test</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1, h2 {
+            color: #2d2d2d;
+        }
+
+        /* Container for page content */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 1000px;
+            padding: 20px;
+        }
+
+        /* Heading Styling */
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-top: 20px;
+        }
+
+        /* Paragraphs and lists */
+        p, ul {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: #007bff;
+        }
+
+        /* Custom styling for the instruction section (smaller font size) */
+        .instructions p,
+        .instructions ul {
+            font-size: 0.9em; /* smaller font size for instructions */
+            line-height: 1.4; /* reduced line-height for instructions */
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 1em;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* AI response styling */
+        .response {
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #f4f4f9;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Additional Styles for Metryczka */
+        .metryczka {
+            background-color: #e9ecef;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 6px;
+        }
+
+        .metryczka h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="instructions">
+            <h1>Welcome to the Inverted Turing Test!</h1>
+
+            <p>You are participating in an experiment where an AI will act as the <strong>judge</strong>. The goal of this test is to determine whether the AI can distinguish whether it is conversing with a human or another AI based on the responses it receives.</p>
+
+            <ul>
+                <li><strong>Your answers are anonymous</strong>: Your responses will not be personally identifiable.</li>
+                <li><strong>Collective analysis</strong>: Your answers will be analyzed as part of a larger group for research purposes.</li>
+                <li><strong>Answer honestly and thoughtfully</strong>: There are no right or wrong answers. The AI will ask you questions, and we are interested in how you respond to them.</li>
+                <li><strong>Responses are not evaluated</strong>: The content of the answers is not judged, but the focus is on how well the AI interacts and determines whether the participant is human or AI.</li>
+            </ul>
+
+            <p>The AI will begin the conversation by asking you questions. Please continue answering as you would in a normal conversation.</p>
+
+            <p>Thank you for participating, and we hope you enjoy the experience!</p>
+            <p>Contact: Małgorza Trąbka | Email: <a href="mailto:maltra2@st.amu.edu.pl">maltra2@st.amu.edu.pl</a></p>
+        </div>
+
+        {% if model_response %}
+            <div class="response">
+                <h2>Judge:</h2>
+                <p>{{ model_response }}</p>
+            </div>
+        {% endif %}
+
+         {% if not isFinal %}
+        <form method="POST" action="/">
+            <label for="user_input">Your Response:</label>
+            <input type="text" id="user_input" name="user_input" required>
+            <button type="submit">Submit</button>
+        </form>
+    {% else %}
+        <div class="metryczka">
+            <h3>Additional Information</h3>
+            <form method="POST" action="/">
+    <label for="gender">Gender Identity:</label>
+    <select id="gender" name="gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+        <option value="prefer_not_to_say">Prefer not to say</option>
+    </select>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required placeholder="Enter your age">
+
+    <label for="education">Education Level:</label>
+    <select id="education" name="education" required>
+        <option value="high_school">High School</option>
+        <option value="bachelor">Bachelor's Degree</option>
+        <option value="master">Master's Degree</option>
+        <option value="doctorate">Doctorate</option>
+        <option value="prefer_not_to_say">Prefer not to say</option>
+    </select>
+
+    <button type="submit">Submit Information</button>
+</form>
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>
+
