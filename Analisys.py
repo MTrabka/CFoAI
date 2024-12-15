@@ -24,7 +24,8 @@ unwanted_phrases = [
 
 # Load your data (assuming you have a 'reasoning' column in your DataFrame)
 df = pd.read_csv("TT_Answers.csv", sep=";")
-
+AI_judge=df[df["Judge ID"]=="AI"]
+Human_judge=df[df["Judge ID"]!="AI"]
 # Function to clean and tokenize text
 def clean_text(text):
     text = text.lower()
@@ -32,28 +33,47 @@ def clean_text(text):
         text = text.replace(word, "")
     stop_words = set(stopwords.words('english'))
     words = nltk.word_tokenize(text)  # Tokenize the text and convert to lowercase
-    return [word for word in words if word.isalpha() and word not in stop_words]  # Keep only alphabets and remove stop words
+    stemmer = nltk.PorterStemmer()  # Użyj stemmera, aby znormalizować słowa
+    return [stemmer.stem(word) for word in words if word.isalpha() and word not in stop_words]
 
-# Combine all text from the 'reasoning' column
-df_human = df[df['Answer'] == 'human']
-text_data = " ".join(df_human['Reasoning'].dropna().apply(clean_text).apply(lambda x: ' '.join(x)))
-
-# Tokenize the text and extract n-grams (bigrams, trigrams, etc.)
-n = 1  # For bigrams (use 3 for trigrams, etc.)
-n_grams = ngrams(text_data.split(), n)
-print(n_grams)
-# Count the frequency of n-grams
-n_gram_freq = Counter(n_grams)
+def generate_frequencies(text_data, n=1):
+    tokens = clean_text(text_data)
+    if n > 1:
+        tokens = list(ngrams(tokens, n))
+    return Counter(tokens)
 
 
-# Prepare data for the word cloud: create a dictionary of n-gram frequency
-phrase_freq = { ' '.join(ngram): count for ngram, count in n_gram_freq.items() }
+# Funkcja do tworzenia wykresów słupkowych
+def plot_bar_chart(counter, title, top_n=10):
+    most_common = counter.most_common(top_n)
+    labels, values = zip(*most_common)
+    labels = [' '.join(label) if isinstance(label, tuple) else label for label in labels]
 
-# Create the word cloud from the n-grams
-wordcloud = WordCloud(width=800, height=400, background_color='white').generate_from_frequencies(phrase_freq)
+    plt.figure(figsize=(10, 6))
+    plt.bar(labels, values, color='skyblue')
+    plt.xticks(rotation=45, ha='right')
+    plt.title(title)
+    plt.xlabel("Words/Phrases")
+    plt.ylabel("Frequency")
+    plt.tight_layout()
+    plt.show()
 
-# Plot the word cloud
-plt.figure(figsize=(10, 5))
-plt.imshow(wordcloud, interpolation='bilinear')
-plt.axis('off')  # No axes for the word cloud
-plt.show()
+
+# Połącz tekst z kolumny 'Reasoning' dla każdej grupy
+AI_text = " ".join(AI_judge['Reasoning'].dropna())
+Human_text = " ".join(Human_judge['Reasoning'].dropna())
+
+# Licz najczęstsze słowa i frazy (unigramy i bigramy)
+AI_unigrams = generate_frequencies(AI_text, n=1)
+Human_unigrams = generate_frequencies(Human_text, n=1)
+AI_bigrams = generate_frequencies(AI_text, n=2)
+Human_bigrams = generate_frequencies(Human_text, n=2)
+
+# Wykresy dla unigramów
+plot_bar_chart(AI_unigrams, "Top 10 Most Common Words in AI Judge", top_n=10)
+plot_bar_chart(Human_unigrams, "Top 10 Most Common Words in Human Judge", top_n=10)
+
+# Wykresy dla bigramów
+plot_bar_chart(AI_bigrams, "Top 10 Most Common Phrases (Bigrams) in AI Judge", top_n=10)
+plot_bar_chart(Human_bigrams, "Top 10 Most Common Phrases (Bigrams) in Human Judge", top_n=10)
+
