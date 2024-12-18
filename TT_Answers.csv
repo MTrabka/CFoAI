@@ -59,33 +59,23 @@ Conversation ID;Participant;Judge ID;Answer;Reasoning
 10;AI;Judge4;AI;The participant's stories are real, common, but due to the form of this answer I would say it is AI, they are similar to essays and are too "stretched"
 19;human9;Judge4;human;Real situations, short, objective, unexaggerated answers
 20;human10;Judge4;human;"Short, substantive answers, a bit philosophical, which gives a real feel. In the case of a question about a spontaneous decision, one would expect it to be actually described, but the answer that one is not spontaneous and not continuing the topic is not typical."\
-1;AI;Judge5;
-16;human6;Judge5;
-3;AI;Judge5;
-15;human5;Judge5;
-2;AI;Judge5;
-4;AI;Judge5;
-5;AI;Judge5;
-14;human4;Judge5;
-11;human1;Judge5;
-13;human3;Judge5;
-1;AI;Judge6;
-16;human6;Judge6;
-3;AI;Judge6;
-15;human5;Judge6;
-2;AI;Judge6;
-4;AI;Judge6;
-5;AI;Judge6;
-14;human4;Judge6;
-11;human1;Judge6;
-13;human3;Judge6;
-1;AI;Judge7;
-16;human6;Judge7;
-3;AI;Judge7;
-15;human5;Judge7;
-2;AI;Judge7;
-4;AI;Judge7;
-5;AI;Judge7;
-14;human4;Judge7;
-11;human1;Judge7;
-13;human3;Judge7;
+1;AI;Judge5;AI;it's a bit too consistent on some topics, the use of *...* also looks a bit too artificial, but that might just be my personal opinion on that. Participant sounds very rambly, suspiciously rambly for a typing in answers and not a 1 on 1 conversation.
+16;human6;Judge5;human;short, somewhat straight to the point answers to an answer, not rambling on and on. Also its answering a question, and not typing out a full story with multiple side points like the other one. There are imperfections like punctual mistakes which doesn't sound very AI-likely.
+3;AI;Judge5;AI;participant seems to have a full-blown conversation with the judge, rahter than answering questions asked. if it was a transcript of a real conversation then it would be plausible. yet again participant is almost too precise and consistent with punctuation. its rambling about diferent topics - which sounds human, but at thje same time it looks to be "trying too much" to appear as human sort of thing. Using oh wow, oh ummm and other break makers sort of thing in a real conversation is unavoidable, but in my opionion when typing, most people tennd to just write what they mean, theres no need to fill that space while typing
+15;human5;Judge5;human;short, straight to the point answers. not rambling on with the details. not perfect on the punctuation. its a simple question-answer sort of deal youd expect from a human writing an answer. almost no punctuation, sort of like type out an nswer from the top of my head kind of thing - i feel like AI wouldnt be so bad at putting commas and full stops sort of way
+2;AI;Judge5;AI;the answers are cahotic and rambly but in a constructed way? answers seem to be a little bit like having a real conversation rather than typing out answers. the answers should be judged one by one and not as a collective, but it feels like some answers were done by the same "person"? its all too identical to other answers - sort of seems like. it looks more like write an essay about the topic rather than simple human question-answer dynamic that usually appears in written forms
+4;AI;Judge5;AI;participant is very rambly which is rare in written answers. also participant seems american??? sweet 16? punch? teenager rager parties? doestn really sound like a thing in Poland??? again, sounds awfully simmilar, almost identical to other conversations. participant is once again trying too hard to appear human - smphasising words like in ral conversations, very well written, structured and punctuation is too perfect.
+5;AI;Judge5;AI;"Remember that time I told you..." - feels like having a full blown conversation rather than typing out an answer. participant is acting like the judge knows them personally with all the tiny detail about their friend and extended family - which in a real conversation would be expected but considering a test/research setting is very unlikely. again participant seems to be the same person as before, same punctuation, almost identical way of being rambly, then catching themselves on it and revolving around question again. ITs almost too descriptive to be a human.
+14;human4;Judge5;human;the answers are short, dont have too much personal information, yet are somewhat human because they lack the detail? considering written form of the test its more likely. Punctuation is non existant which modern AI models would never bring themselves to do. i got lost in one answer, lack of punctuation and chaotic sentence all together - this feels like a real human being, not explaingn themselves too much, again even though its not a short to the point answer it doesnt feel like reading a 300 word essay with each answer.
+11;human1;Judge5;human;spelling errors? im not sure if AI is capable of doing such imperfect thing. answers are short, almost enigmatic - writen form might explain it here. it almost looks like autocorrect jumped in on  several ocasions and the participant didnt bother to correct the mistakes - something that wouldnt happen with a language model. participant isnt trying too hard to sell the whole story, more like short answers to research personel rather than a full blown convo with a friend.
+13;human3;Judge5;human;answers are descriptive, yet not overwhelmingly detailed. they use sort fo neutral terms like boyfriend, parents, man rahter than names, ages and so on. again a human answering research related questions likely. answers involve self reflection, thought process but its more like reflection on something that happend in the past rather than doing(and writing it???) on the spot. It sort of shows qualities of real life in poland - being scared of people approching you on the street? sounds very central europe rather than american suburban utopia descirbed in other convos. in the beginig punctuation is almost perfect, but closer to the end it gets sloppy? again not something AI would have done. its inconsistent, detailed but not essay worthy, feels human like
+1;AI;Judge6;human;I think the participant is a human because his answers look a bit like the verbosity characteristic of people who tell stories. There are also anecdotes like one about dropping cookie dough on the floor. Participant uses a lot of imagination-provoking adjectives in his responses.
+16;human6;Judge6;AI;I believe the participant could be AI. The responses are curt, lack emotionality and are overly simplistic.
+3;AI;Judge6;human;There is a great deal of details and participant's storytelling feels really natural. He also makes some jokes to enrich his answers.
+15;human5;Judge6;AI; The responses seem so artificial (hehe). They are emotionless, lack some details that could enrich them. It must be an AI or really tired and bored person.
+2;AI;Judge6;human;Responses are rich in details and embellished adjectives. It is like the person wanted us to be able to imagine and feel all his experience.
+4;AI;Judge6;human;He used slang like 'cringe' and 'facepalm' when describing embarrassment.
+5;AI;Judge6;human;Again huge amount of details and rich in adjectives. I can feel emotions of this person.
+14;human4;Judge6;AI;Participant's answers are curt. There is no emotional depth.
+11;human1;Judge6;AI;I see some grammatical errors which AI probably would not make but also there are no vivid details in these answers. Discussed topics are quite personal (memories of the loved grandfather) so it should be natural to use more emotional language.
+13;human3;Judge6;human;Participant's answers are short but they include context, cause and consequence which can indicate a human participant.

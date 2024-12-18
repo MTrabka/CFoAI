@@ -3,30 +3,25 @@ from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 import os
 
-# Załadowanie konfiguracji z pliku .env
 load_dotenv("config.env")
 api_key = os.getenv("API_KEY")
-
-# Konfiguracja modelu Gemini
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-1.5-flash")
-
-# Inicjalizacja aplikacji Flask
 app = Flask(__name__, template_folder='Templates')
 
-# Zmienna przechowująca historię rozmowy
-conversation = []
-turns = 0  # Licznik tur
-user_data = {}  # Zmienna przechowująca dane użytkownika
 
-# Funkcja do zapisywania logów rozmowy
+conversation = []
+turns = 0
+user_data = {}
+
+
 def save_conversation_log(conversation):
     with open("conversation_log.txt", "a") as log_file:
         for turn in conversation:
             log_file.write(f"{turn}\n")
         log_file.write("\n---\n")
 
-# Funkcja do generowania pytań przez AI
+
 def generate_ai_question(isFinal=False):
     global conversation
     if not isFinal:
@@ -53,7 +48,6 @@ def generate_ai_question(isFinal=False):
 
 from flask import send_file
 
-# Route to download the conversation log
 @app.route("/download-log", methods=["GET"])
 def download_log():
     try:
@@ -74,7 +68,6 @@ def delete_log():
     except Exception as e:
         return f"Error: {str(e)}"
 
-# Strona główna - wyświetlenie formularza
 @app.route("/", methods=["GET", "POST"])
 def index():
     global conversation, turns, user_data
@@ -82,25 +75,22 @@ def index():
     isFinal = False  # Domyślnie nie finalny osąd
 
 
-    # Obsługa resetu
+
     if request.args.get("reset") == "true":
-        # Resetowanie zmiennych
+
         conversation = []
         turns = 0
         user_data = {}
 
-        # Generowanie nowego pytania od AI
         ai_question = generate_ai_question()
         conversation.append(f"Judge: {ai_question}")
         turns += 1
 
-        # Wyświetlenie strony z nowym pytaniem
         return render_template("indexUser.html", model_response=ai_question, isFinal=False, user_data={})
 
     print(request.form)
     if request.method == "POST":
         if turns != 0 and turns < 6:
-            # Pobranie odpowiedzi użytkownika i generowanie kolejnego pytania
             user_input = request.form.get("user_input")
             conversation.append(f"Participant: {user_input}")
             ai_question = generate_ai_question()
@@ -116,7 +106,7 @@ def index():
             turns+=1
         elif turns == 7 and not user_data:
             print(f"Truns form: {turns}")
-            print("Form submission received.")  # Debugging statement
+            print("Form submission received.")
             user_data = {
                 "gender": request.form.get("gender"),
                 "age": request.form.get("age"),
@@ -130,7 +120,6 @@ def index():
 
 
     elif request.method == "GET":
-        # Przy pierwszym załadowaniu strony, generuj pytanie, jeśli rozmowa jest pusta
         if turns == 0 and not conversation:
             ai_question = generate_ai_question()
             conversation.append(f"Judge: {ai_question}")
